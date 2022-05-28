@@ -1,0 +1,257 @@
+
+@mixin mid-screen{
+    @media(max-width:1539px){
+      @content;
+    }
+  }
+@mixin small-screen{
+    @media(max-width:1200px){
+      @content;
+    }
+  }
+@mixin laptop{
+    @media(max-width:1000px){
+      @content;
+    }
+  }
+
+@mixin pad{
+    @media(max-width:768px){
+      @content;
+    }
+  }
+  @mixin mobile{
+    @media(max-width:539px){
+      @content;
+    }
+  }
+  
+
+
+
+* {
+    box-sizing: border-box;
+    font-family: Microsoft JhengHei;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    padding: 0 10%;
+    background-image: url(../img/bgi.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    .bgi {
+        height: 100%;
+        backdrop-filter: blur(3px);
+        background-color: rgba(255, 255, 255, .2);
+        nav {
+            display: flex;
+            flex-direction: column;
+
+            .header-bgi {
+                width: 100%;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+
+                .search {
+                    width: 30%;
+                    position: relative;
+
+                    input {
+                        width: 100%;
+                        height: 50px;
+                        border-radius: 50px;
+                        padding-left: 30px;
+                        border: none;
+                        outline: none;
+                        font-size: 20px;
+                        color: white;
+                        font-weight: 600;
+                        background-color: rgba($color: rgba($color: #000000, $alpha: .5), $alpha: .5);
+                    }
+                    .search-icon{
+                        position: absolute;
+                        top: 15px;
+                        right: 20px;
+                        i{
+                            font-size: 20px;
+                            color: rgba(255, 255, 255, 0.5);
+                        }
+                    }
+                    @include pad {
+                        width: 50%;
+                    }
+                    @include mobile {
+                        width: 80%;
+                    }
+                }
+
+            }
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+                padding: 24px;
+                margin: 0px;
+
+                li {
+                    list-style: none;
+                    width: calc(100% / 6);
+                    height: 30px;
+                    text-align: center;
+                    font-size: 20px;
+                    letter-spacing: 10px;
+                    text-indent: 10px;
+                    border-right: 1px solid white;
+                    cursor: pointer;
+                    color: white;
+                    @include mobile {
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+
+                li:last-child {
+                    border-right: transparent;
+                }
+
+                li:focus {
+                    border-bottom: 1px solid white;
+                }
+                
+            }
+
+        }
+
+        .card-region {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            align-self: start;
+            padding: 0 20px;
+
+            .single-card {
+                height: 100px;
+                width: calc(20% - 24px);
+                background-color: rgba($color: #000000, $alpha: .5);
+                position: relative;
+                margin: 12px;
+                border-radius: 10px;
+                color: white;
+                transition: 0.3s;
+
+                
+
+                p {
+                    margin: 0px;
+                }
+
+                .pop {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    z-index: 1;
+                }
+
+                .city {
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                    z-index: 1;
+                }
+
+                .temp {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    font-size: 30px;
+                    z-index: 1;
+                }
+                .wx{
+                    position: absolute;
+                    width: 100px;
+                    text-align: right;
+                    top: 10px;
+                    right: 80px;
+                    opacity: 0;
+                    transition: 1s;
+                }
+
+                img {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    width: 60px;
+                    transition: 500ms;
+                }
+                &:hover{
+                    height: 124px;
+                    width: 20%;
+                    margin: 0;
+                    .wx{
+                        opacity: 1;
+                    }
+                }
+                @include mid-screen {
+                    width: calc(25% - 24px);
+                    &:hover{
+                        width: 25%;
+                    }
+                }
+                @include laptop {
+                    width: calc(100% / 3 - 24px);
+                    &:hover{
+                        width: calc(100% / 3);
+                    }
+                }
+                @include pad {
+                    width: calc(50% - 24px);
+                    &:hover{
+                        width: 50%;
+                    }
+                }
+                @include mobile {
+                    width: calc(100% - 24px);
+                    &:hover{
+                        width: 100%;
+                    }
+                }
+            }
+
+
+            .search-result {
+                margin: 12px auto;
+            }
+
+            .not-found {
+                margin: 24px auto;
+                font-size: 30px;
+                color: white;
+            }
+        }
+    }
+    @include small-screen {
+        padding: 0;
+    }
+    @include laptop {
+        height: calc(100vh + 200px);
+    }
+    @include pad {
+        height: calc(100vh + 600px);
+    }
+    @include mobile {
+        height: calc(100vh + 2000px);
+    }
+
+}
